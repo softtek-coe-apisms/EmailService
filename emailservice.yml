@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: emailservice
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: emailservice
+    spec:
+      containers:
+        - name: emailservice
+          image: 'softtekcoeapisms/emailservice:1.0'
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: emailservice
+  labels:
+    name: emailservice
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  selector:
+    app: emailservice
+  type: LoadBalancer
