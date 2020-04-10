@@ -29,4 +29,4 @@ spec:
       protocol: TCP
   selector:
     app: emailservice
-  type: LoadBalancer
+  type: ClusterIP
